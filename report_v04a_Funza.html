@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sede: Bucaramanga &#8212; Informe Homecenter</title>
+    <title>Sede: Funza &#8212; Informe Homecenter</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -54,8 +54,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Sede: Barranquilla" href="report_v04a_Barranquilla.html" />
-    <link rel="prev" title="Sede: Bello" href="report_v04a_bello.html" />
+    <link rel="next" title="Sede: La popa" href="report_v04a_La_popa.html" />
+    <link rel="prev" title="Sede: Calle 80" href="report_v04a_Calle80.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -98,8 +98,8 @@
    Sede: Bello
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="report_v04a_Bucaramanga.html">
    Sede: Bucaramanga
   </a>
  </li>
@@ -118,8 +118,8 @@
    Sede: Calle 80
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="report_v04a_Funza.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Sede: Funza
   </a>
  </li>
@@ -192,10 +192,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/jkgv92/Informes_Homecenter/issues/new?title=Issue%20on%20page%20%2Freport_v04a_Bucaramanga.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/jkgv92/Informes_Homecenter/issues/new?title=Issue%20on%20page%20%2Freport_v04a_Funza.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/jkgv92/Informes_Homecenter/edit/master/report_v04a_Bucaramanga.ipynb"><button
+        <a class="edit-button" href="https://github.com/jkgv92/Informes_Homecenter/edit/master/report_v04a_Funza.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -221,23 +221,13 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#modules">
-   Modules:
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#configuration">
-   Configuration:
+  <a class="reference internal nav-link" href="#get-data">
+   Get data:
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#parameters">
-     Parameters:
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#post-process">
-     Post-process:
+    <a class="reference internal nav-link" href="#request-and-parse">
+     Request and parse:
     </a>
    </li>
   </ul>
@@ -281,7 +271,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Sede: Bucaramanga</h1>
+                <h1>Sede: Funza</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -292,23 +282,13 @@
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#modules">
-   Modules:
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#configuration">
-   Configuration:
+  <a class="reference internal nav-link" href="#get-data">
+   Get data:
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#parameters">
-     Parameters:
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#post-process">
-     Post-process:
+    <a class="reference internal nav-link" href="#request-and-parse">
+     Request and parse:
     </a>
    </li>
   </ul>
@@ -351,15 +331,8 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="sede-bucaramanga">
-<h1>Sede: Bucaramanga<a class="headerlink" href="#sede-bucaramanga" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="modules">
-<h2>Modules:<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="configuration">
-<h2>Configuration:<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="parameters">
-<h3>Parameters:<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h3>
+  <div class="tex2jax_ignore mathjax_ignore section" id="sede-funza">
+<h1>Sede: Funza<a class="headerlink" href="#sede-funza" title="Permalink to this headline">¶</a></h1>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">save_figures</span> <span class="o">=</span> <span class="kc">False</span>
@@ -370,7 +343,7 @@
 <span class="c1"># Specify the date interval to fetch data from</span>
 <span class="c1"># the format must be: &#39;YYYY-MM-DD&#39;</span>
 <span class="n">BASELINE_DATE_INTERVAL</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;start&#39;</span><span class="p">:</span> <span class="s1">&#39;2022-04-08&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;start&#39;</span><span class="p">:</span> <span class="s1">&#39;2022-01-01&#39;</span><span class="p">,</span>
     <span class="s1">&#39;end&#39;</span><span class="p">:</span> <span class="s1">&#39;2022-05-31&#39;</span>
 <span class="p">}</span>
 
@@ -389,12 +362,12 @@
 </div>
 </div>
 </div>
-<div class="cell tag_hide-input docutils container">
+<div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">device_group_label</span> <span class="o">=</span> <span class="s1">&#39;homecenter-sedes&#39;</span>
 <span class="n">dct_available_devices</span> <span class="o">=</span> <span class="n">get_available_devices</span><span class="p">(</span><span class="n">device_group_label</span><span class="p">)</span>
 <span class="c1"># LST_DEVICE_ID_TO_REQUEST = list(dct_available_devices.keys())</span>
-<span class="n">LST_DEVICE_ID_TO_REQUEST</span> <span class="o">=</span> <span class="s1">&#39;623c686627da4ba193edb89a&#39;</span>
+<span class="n">LST_DEVICE_ID_TO_REQUEST</span> <span class="o">=</span> <span class="s1">&#39;623b27b01d0b0e9d73fd8ae7&#39;</span>
 
 <span class="n">ACTIVE_ENERGY_LABEL</span> <span class="o">=</span> <span class="s1">&#39;ea-total&#39;</span>
 <span class="n">ACTIVE_POWER_LABEL</span> <span class="o">=</span> <span class="s1">&#39;pa-total&#39;</span>
@@ -419,28 +392,31 @@
     &quot;ea-concesion&quot;,
     &quot;ea-equipos-de-climatizacion&quot;,
     &quot;ea-equipos-verticales&quot;,
-    &quot;ea-iluminacion-cuarto-tecnico&quot;,
     &quot;ea-iluminacion-parqueaderos&quot;,
     &quot;ea-iluminacion-patio-constructor&quot;,
     &quot;ea-iluminacion-patio-contenedores&quot;,
     &quot;ea-iluminacion-principal&quot;,
     &quot;ea-oficinas-y-servicios&quot;,
+    &quot;ea-sabados&quot;,
     &quot;ea-tablero-sorter&quot;,
     &quot;ea-talleres&quot;,
     &quot;ea-total&quot;,
-    &quot;pa-car-center&quot;,
-    &quot;pa-concesiones&quot;,
+    &quot;pa-area-de-bots&quot;,
     &quot;pa-equipos-de-climatizacion&quot;,
-    &quot;pa-equipos-verticales&quot;,
     &quot;pa-iluminacion-parqueaderos&quot;,
-    &quot;pa-iluminacion-patio-constructor&quot;,
+    &quot;pa-iluminacion-patio-contenedores&quot;,
     &quot;pa-iluminacion-principal&quot;,
-    &quot;pa-patio-constructor&quot;
+    &quot;pa-oficinas-y-servicios&quot;,
+    &quot;pa-tablero-sorter&quot;
 ]
 </pre></div>
 </div>
 </div>
 </div>
+<div class="section" id="get-data">
+<h2>Get data:<a class="headerlink" href="#get-data" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="request-and-parse">
+<h3>Request and parse:<a class="headerlink" href="#request-and-parse" title="Permalink to this headline">¶</a></h3>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="kc">None</span>
@@ -456,37 +432,34 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of baseline data: (34611, 4)
-Shape of study data: (18569, 4)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of baseline data: (44425, 4)
+Shape of study data: (13088, 4)
 The response contains:
 [
-    &quot;ea-car-center&quot;,
-    &quot;ea-concesion&quot;,
+    &quot;ea-area-de-bots&quot;,
     &quot;ea-equipos-de-climatizacion&quot;,
-    &quot;ea-equipos-verticales&quot;,
     &quot;ea-iluminacion-parqueaderos&quot;,
-    &quot;ea-iluminacion-patio-constructor&quot;,
+    &quot;ea-iluminacion-patio-contenedores&quot;,
     &quot;ea-iluminacion-principal&quot;,
+    &quot;ea-oficinas-y-servicios&quot;,
+    &quot;ea-sabados&quot;,
+    &quot;ea-tablero-sorter&quot;,
     &quot;ea-total&quot;,
-    &quot;pa-car-center&quot;,
-    &quot;pa-concesiones&quot;,
+    &quot;pa-area-de-bots&quot;,
     &quot;pa-equipos-de-climatizacion&quot;,
-    &quot;pa-equipos-verticales&quot;,
     &quot;pa-iluminacion-parqueaderos&quot;,
-    &quot;pa-iluminacion-patio-constructor&quot;,
+    &quot;pa-iluminacion-patio-contenedores&quot;,
     &quot;pa-iluminacion-principal&quot;,
-    &quot;pa-patio-constructor&quot;
+    &quot;pa-oficinas-y-servicios&quot;,
+    &quot;pa-tablero-sorter&quot;
 ]
 [
-    &quot;hc---bucaramanga&quot;
+    &quot;hc-funza&quot;
 ]
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="post-process">
-<h3>Post-process:<a class="headerlink" href="#post-process" title="Permalink to this headline">¶</a></h3>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># df, df_raw = post_process_data(df)</span>
@@ -537,59 +510,59 @@ The response contains:
   </thead>
   <tbody>
     <tr>
-      <th>2022-04-08 00:15:00-05:00</th>
+      <th>2022-03-09 10:01:32-05:00</th>
       <td>NaN</td>
-      <td>pa-equipos-de-climatizacion</td>
-      <td>hc---bucaramanga</td>
-      <td>HC - Bucaramanga</td>
+      <td>pa-iluminacion-parqueaderos</td>
+      <td>hc-funza</td>
+      <td>HC - Funza</td>
       <td>False</td>
-      <td>viernes</td>
-      <td>0</td>
-      <td>4</td>
+      <td>miércoles</td>
+      <td>10</td>
+      <td>3</td>
     </tr>
     <tr>
-      <th>2022-04-08 00:15:00-05:00</th>
+      <th>2022-03-09 10:02:16-05:00</th>
       <td>NaN</td>
-      <td>pa-equipos-verticales</td>
-      <td>hc---bucaramanga</td>
-      <td>HC - Bucaramanga</td>
+      <td>pa-iluminacion-parqueaderos</td>
+      <td>hc-funza</td>
+      <td>HC - Funza</td>
       <td>False</td>
-      <td>viernes</td>
-      <td>0</td>
-      <td>4</td>
+      <td>miércoles</td>
+      <td>10</td>
+      <td>3</td>
     </tr>
     <tr>
-      <th>2022-04-08 00:15:00-05:00</th>
-      <td>NaN</td>
-      <td>pa-iluminacion-patio-constructor</td>
-      <td>hc---bucaramanga</td>
-      <td>HC - Bucaramanga</td>
+      <th>2022-03-09 10:15:01-05:00</th>
+      <td>0.1</td>
+      <td>pa-iluminacion-parqueaderos</td>
+      <td>hc-funza</td>
+      <td>HC - Funza</td>
       <td>False</td>
-      <td>viernes</td>
-      <td>0</td>
-      <td>4</td>
+      <td>miércoles</td>
+      <td>10</td>
+      <td>3</td>
     </tr>
     <tr>
-      <th>2022-04-08 00:15:00-05:00</th>
-      <td>NaN</td>
-      <td>pa-iluminacion-principal</td>
-      <td>hc---bucaramanga</td>
-      <td>HC - Bucaramanga</td>
+      <th>2022-03-09 10:30:00-05:00</th>
+      <td>0.1</td>
+      <td>pa-iluminacion-parqueaderos</td>
+      <td>hc-funza</td>
+      <td>HC - Funza</td>
       <td>False</td>
-      <td>viernes</td>
-      <td>0</td>
-      <td>4</td>
+      <td>miércoles</td>
+      <td>10</td>
+      <td>3</td>
     </tr>
     <tr>
-      <th>2022-04-08 00:15:00-05:00</th>
+      <th>2022-03-09 10:30:00-05:00</th>
       <td>NaN</td>
-      <td>pa-patio-constructor</td>
-      <td>hc---bucaramanga</td>
-      <td>HC - Bucaramanga</td>
+      <td>pa-iluminacion-patio-contenedores</td>
+      <td>hc-funza</td>
+      <td>HC - Funza</td>
       <td>False</td>
-      <td>viernes</td>
-      <td>0</td>
-      <td>4</td>
+      <td>miércoles</td>
+      <td>10</td>
+      <td>3</td>
     </tr>
     <tr>
       <th>...</th>
@@ -606,8 +579,8 @@ The response contains:
       <th>2022-06-30 00:00:00-05:00</th>
       <td>NaN</td>
       <td>ea-total</td>
-      <td>hc---bucaramanga</td>
-      <td>HC - Bucaramanga</td>
+      <td>hc-funza</td>
+      <td>HC - Funza</td>
       <td>False</td>
       <td>jueves</td>
       <td>0</td>
@@ -616,9 +589,9 @@ The response contains:
     <tr>
       <th>2022-06-30 00:00:00-05:00</th>
       <td>NaN</td>
-      <td>pa-car-center</td>
-      <td>hc---bucaramanga</td>
-      <td>HC - Bucaramanga</td>
+      <td>pa-area-de-bots</td>
+      <td>hc-funza</td>
+      <td>HC - Funza</td>
       <td>False</td>
       <td>jueves</td>
       <td>0</td>
@@ -627,9 +600,9 @@ The response contains:
     <tr>
       <th>2022-06-30 00:00:00-05:00</th>
       <td>NaN</td>
-      <td>pa-concesiones</td>
-      <td>hc---bucaramanga</td>
-      <td>HC - Bucaramanga</td>
+      <td>pa-iluminacion-patio-contenedores</td>
+      <td>hc-funza</td>
+      <td>HC - Funza</td>
       <td>False</td>
       <td>jueves</td>
       <td>0</td>
@@ -638,9 +611,9 @@ The response contains:
     <tr>
       <th>2022-06-30 00:00:00-05:00</th>
       <td>NaN</td>
-      <td>pa-iluminacion-parqueaderos</td>
-      <td>hc---bucaramanga</td>
-      <td>HC - Bucaramanga</td>
+      <td>pa-oficinas-y-servicios</td>
+      <td>hc-funza</td>
+      <td>HC - Funza</td>
       <td>False</td>
       <td>jueves</td>
       <td>0</td>
@@ -649,9 +622,9 @@ The response contains:
     <tr>
       <th>2022-06-30 00:00:00-05:00</th>
       <td>NaN</td>
-      <td>pa-iluminacion-principal</td>
-      <td>hc---bucaramanga</td>
-      <td>HC - Bucaramanga</td>
+      <td>pa-tablero-sorter</td>
+      <td>hc-funza</td>
+      <td>HC - Funza</td>
       <td>False</td>
       <td>jueves</td>
       <td>0</td>
@@ -659,19 +632,86 @@ The response contains:
     </tr>
   </tbody>
 </table>
-<p>53164 rows × 8 columns</p>
+<p>57497 rows × 8 columns</p>
 </div></div></div>
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;El consumo de energía durante el periodo de observación fue: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">consumo_baseline</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> kWh&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_outlier_counts</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Data counts:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;variable&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">validate_cleaning</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="c1"># TODO: make this loop trough all variables</span>
+    <span class="c1"># to present a complete picture of cleaning</span>
+    <span class="c1"># performance.</span>
+    <span class="n">run_cleaning_analysis</span><span class="p">(</span>
+        <span class="n">variable</span><span class="o">=</span><span class="s1">&#39;pa-iluminacion-patio-constructor&#39;</span><span class="p">,</span> <span class="c1"># &#39;pa-oficinas-y-servicios&#39;, # &#39;pa-equipos-de-climatizacion&#39;, # </span>
+        <span class="n">start_date</span><span class="o">=</span><span class="s1">&#39;2022-01-01&#39;</span><span class="p">,</span> 
+        <span class="n">end_date</span><span class="o">=</span><span class="s1">&#39;2022-06-30&#39;</span><span class="p">,</span>
+        <span class="n">bins</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+        <span class="n">wide_figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span>
+        <span class="n">square_figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Outlier counts:
+pa-iluminacion-principal             2633
+pa-oficinas-y-servicios              2503
+pa-tablero-sorter                    1924
+pa-area-de-bots                      1729
+pa-equipos-de-climatizacion          1713
+ea-total                             1384
+ea-iluminacion-principal             1384
+ea-tablero-sorter                    1136
+ea-area-de-bots                      1060
+ea-iluminacion-parqueaderos           953
+ea-oficinas-y-servicios               919
+ea-equipos-de-climatizacion           909
+ea-iluminacion-patio-contenedores     563
+pa-iluminacion-parqueaderos           461
+pa-iluminacion-patio-contenedores     448
+ea-sabados                            178
+Name: variable, dtype: int64
+ 
+Data counts:
+variable
+pa-iluminacion-principal             8317
+pa-oficinas-y-servicios              5824
+pa-tablero-sorter                    5013
+pa-area-de-bots                      4893
+pa-equipos-de-climatizacion          4872
+pa-iluminacion-parqueaderos          4811
+pa-iluminacion-patio-contenedores    4762
+ea-total                             2676
+ea-iluminacion-principal             2619
+ea-area-de-bots                      2310
+ea-tablero-sorter                    2297
+ea-iluminacion-patio-contenedores    2269
+ea-iluminacion-parqueaderos          2250
+ea-oficinas-y-servicios              2194
+ea-equipos-de-climatizacion          1989
+ea-sabados                            353
+Name: value, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;El consumo de energía durante el periodo de línea base fue: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">consumo_baseline</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> kWh&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;El consumo de energía durante el periodo de observación fue: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">consumo_estudio</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> kWh&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>El consumo de energía durante el periodo de observación fue: 185089.12 kWh
-El consumo de energía durante el periodo de observación fue: 186928.06 kWh
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>El consumo de energía durante el periodo de línea base fue: 51341.5 kWh
+El consumo de energía durante el periodo de observación fue: 53078.51 kWh
 </pre></div>
 </div>
 </div>
@@ -694,11 +734,12 @@ El consumo de energía durante el periodo de observación fue: 186928.06 kWh
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/report_v04a_Bucaramanga_62_0.png" src="_images/report_v04a_Bucaramanga_62_0.png" />
+<img alt="_images/report_v04a_Funza_41_0.png" src="_images/report_v04a_Funza_41_0.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Main variable labels:
 [
-    &quot;pa-equipos-de-climatizacion&quot;,
-    &quot;pa-concesion&quot;
+    &quot;pa-iluminacion-principal&quot;,
+    &quot;pa-tablero-sorter&quot;,
+    &quot;pa-sabados&quot;
 ]
 </pre></div>
 </div>
@@ -707,43 +748,43 @@ El consumo de energía durante el periodo de observación fue: 186928.06 kWh
 </div>
 <div class="section" id="figuras-dia-tipico">
 <h4>Figuras día típico:<a class="headerlink" href="#figuras-dia-tipico" title="Permalink to this headline">¶</a></h4>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_aggregated_hourly_consumption_from_energy</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/report_v04a_Bucaramanga_64_0.png" src="_images/report_v04a_Bucaramanga_64_0.png" />
+<img alt="_images/report_v04a_Funza_43_0.png" src="_images/report_v04a_Funza_43_0.png" />
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_ci_by_hour_single_figure</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">lst_main_labels</span><span class="p">,</span> <span class="n">hue_order</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/report_v04a_Bucaramanga_65_0.png" src="_images/report_v04a_Bucaramanga_65_0.png" />
+<img alt="_images/report_v04a_Funza_44_0.png" src="_images/report_v04a_Funza_44_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="figuras-por-dia-de-la-semana">
 <h4>Figuras por día de la semana:<a class="headerlink" href="#figuras-por-dia-de-la-semana" title="Permalink to this headline">¶</a></h4>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_ci_per_dow_multiple_fig_from_power</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">lst_main_labels</span><span class="p">,</span> <span class="n">hue_order</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/report_v04a_Bucaramanga_67_0.png" src="_images/report_v04a_Bucaramanga_67_0.png" />
-<img alt="_images/report_v04a_Bucaramanga_67_1.png" src="_images/report_v04a_Bucaramanga_67_1.png" />
-<img alt="_images/report_v04a_Bucaramanga_67_2.png" src="_images/report_v04a_Bucaramanga_67_2.png" />
-<img alt="_images/report_v04a_Bucaramanga_67_3.png" src="_images/report_v04a_Bucaramanga_67_3.png" />
-<img alt="_images/report_v04a_Bucaramanga_67_4.png" src="_images/report_v04a_Bucaramanga_67_4.png" />
-<img alt="_images/report_v04a_Bucaramanga_67_5.png" src="_images/report_v04a_Bucaramanga_67_5.png" />
-<img alt="_images/report_v04a_Bucaramanga_67_6.png" src="_images/report_v04a_Bucaramanga_67_6.png" />
+<img alt="_images/report_v04a_Funza_46_0.png" src="_images/report_v04a_Funza_46_0.png" />
+<img alt="_images/report_v04a_Funza_46_1.png" src="_images/report_v04a_Funza_46_1.png" />
+<img alt="_images/report_v04a_Funza_46_2.png" src="_images/report_v04a_Funza_46_2.png" />
+<img alt="_images/report_v04a_Funza_46_3.png" src="_images/report_v04a_Funza_46_3.png" />
+<img alt="_images/report_v04a_Funza_46_4.png" src="_images/report_v04a_Funza_46_4.png" />
+<img alt="_images/report_v04a_Funza_46_5.png" src="_images/report_v04a_Funza_46_5.png" />
+<img alt="_images/report_v04a_Funza_46_6.png" src="_images/report_v04a_Funza_46_6.png" />
 </div>
 </div>
 </div>
@@ -776,17 +817,17 @@ El consumo de energía durante el periodo de observación fue: 186928.06 kWh
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="report_v04a_bello.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="report_v04a_Calle80.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Sede: Bello</p>
+            <p class="prev-next-title">Sede: Calle 80</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="report_v04a_Barranquilla.html" title="next page">
+    <a class='right-next' id="next-link" href="report_v04a_La_popa.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Sede: Barranquilla</p>
+        <p class="prev-next-title">Sede: La popa</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
