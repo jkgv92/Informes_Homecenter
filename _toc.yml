@@ -6,5 +6,15 @@ root: intro
 chapters:
 - file: report_v04a_bello
 - file: report_v04a_Bucaramanga
+- file: report_v04a_Barranquilla
+- file: report_v04a_Cali_Norte
+- file: report_v04a_Cali_Sur
+- file: report_v04a_Cedritos
+- file: report_v04a_Calle80
+- file: report_v04a_Funza
+- file: report_v04a_La_popa
+- file: report_v04a_Palmira
+- file: report_v04a_San_Fernando
 - file: report_v04a_San_Juan
+- file: report_v04a_Tintal
 

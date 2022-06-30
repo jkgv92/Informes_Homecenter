@@ -6,7 +6,7 @@
 
 # ## Modules:
 
-# In[1]:
+# In[2]:
 
 
 get_ipython().run_line_magic('load_ext', 'autoreload')
@@ -37,7 +37,7 @@ import os
 
 # ### General purpose functions:
 
-# In[148]:
+# In[3]:
 
 
 def calculate_interval_duration_days(interval):
@@ -89,7 +89,7 @@ def make_month_column(df):
 
 # ### Data-fetching functions:
 
-# In[149]:
+# In[4]:
 
 
 def make_request(LST_DEVICE_ID_TO_REQUEST, LST_VAR_LABELS, LST_VAR_FIELDS, date_interval, DATE_FORMAT, _TOKEN):
@@ -159,7 +159,7 @@ def parse_flat_data(df, DCT_AVAILABLE_VAR_ID):
     return df.drop(columns='timestamp')
 
 
-# In[150]:
+# In[5]:
 
 
 def get_available_devices(device_group_label):
@@ -202,7 +202,7 @@ def show_variable_labels_to_request():
 
 # ### Post-processing functions:
 
-# In[151]:
+# In[6]:
 
 
 def show_outlier_counts(df):
@@ -213,7 +213,7 @@ def show_outlier_counts(df):
     print(df.loc[is_selection, 'variable'].value_counts())
 
 
-# In[152]:
+# In[7]:
 
 
 def double_subset_rolling_clean(df, subset_1=None, subset_2=None, clean_on=None):
@@ -255,7 +255,7 @@ def double_subset_rolling_clean(df, subset_1=None, subset_2=None, clean_on=None)
     return pd.concat(lst_df)
 
 
-# In[153]:
+# In[8]:
 
 
 def rolling_percentile_outlier(series, window, confidence_interval):
@@ -284,7 +284,7 @@ def rolling_percentile_outlier(series, window, confidence_interval):
     return is_outlier
 
 
-# In[154]:
+# In[9]:
 
 
 def discard_date_intervals(df):
@@ -296,7 +296,7 @@ def discard_date_intervals(df):
     return df[is_outside_range].copy()
 
 
-# In[155]:
+# In[10]:
 
 
 def run_cleaning_analysis(variable=None, start_date=None, end_date=None, bins=None, wide_figsize=(30,10), square_figsize=(10,10)):
@@ -336,7 +336,7 @@ def run_cleaning_analysis(variable=None, start_date=None, end_date=None, bins=No
 
 # ### Cell-block functions:
 
-# In[156]:
+# In[11]:
 
 
 def request_data():
@@ -383,7 +383,7 @@ def parse_response(response_bl, response_st):
     return pd.concat([df_bl, df_st])
 
 
-# In[157]:
+# In[12]:
 
 
 def post_process_data(df):
@@ -417,7 +417,7 @@ def post_process_data(df):
 
 # ### Low-level plotting functions:
 
-# In[158]:
+# In[13]:
 
 
 def split_into_baseline_and_study(df, baseline_interval, study_interval):
@@ -428,7 +428,7 @@ def split_into_baseline_and_study(df, baseline_interval, study_interval):
     return df_baseline, df_study
 
 
-# In[159]:
+# In[14]:
 
 
 def discard_date_intervals(df, discard_date_interval):
@@ -440,7 +440,7 @@ def discard_date_intervals(df, discard_date_interval):
     return df[is_outside_range].copy()
 
 
-# In[160]:
+# In[15]:
 
 
 def plot_list_series(lst_series, device_name, figsize, draw_markers=True):
@@ -457,7 +457,7 @@ def plot_list_series(lst_series, device_name, figsize, draw_markers=True):
     plt.show()
 
 
-# In[161]:
+# In[16]:
 
 
 def subset_plot_long_df(df, device_label, wide_figure_size, values=None, subset=None, draw_markers=False):
@@ -476,7 +476,7 @@ def subset_plot_long_df(df, device_label, wide_figure_size, values=None, subset=
     )
 
 
-# In[162]:
+# In[17]:
 
 
 def plot_df(df, device_label, wide_figure_size, draw_markers=False):
@@ -484,7 +484,7 @@ def plot_df(df, device_label, wide_figure_size, draw_markers=False):
     plot_list_series(lst_series, device_label, wide_figure_size, draw_markers=draw_markers)
 
 
-# In[163]:
+# In[18]:
 
 
 def plot_confidence_intervals(df_bl, df_s, confidence_interval, title, figsize, x=None, y=None, hue=None, hue_order=None, individual=False, label_style=False):
@@ -535,7 +535,7 @@ def plot_confidence_intervals(df_bl, df_s, confidence_interval, title, figsize, 
     # sns.set(rc={'figure.figsize':figsize})
 
 
-# In[164]:
+# In[19]:
 
 
 def run_pareto_analysis(df):
@@ -589,7 +589,7 @@ def make_hue_order(s_delta, lst_main_labels, new_label=None):
     return list(s_sorter.index)
 
 
-# In[165]:
+# In[20]:
 
 
 def assemble_aggregator(lst_non_value_cols, value_method, bulk_method):
@@ -637,7 +637,7 @@ def subset_drop_first_n_rows(df, subset=None, n_rows=None):
     return pd.concat(lst_df, ignore_index=False)
 
 
-# In[166]:
+# In[21]:
 
 
 def lump_secondary_variables(df, lst_main_labels, new_variable_label, dct_agg, by=None):
@@ -661,7 +661,7 @@ def lump_secondary_variables(df, lst_main_labels, new_variable_label, dct_agg, b
     return pd.concat(lst_df, ignore_index=False)
 
 
-# In[167]:
+# In[22]:
 
 
 def find_consumption_delta_per_variable(df_bl, df_st, merge_on=None):
@@ -673,7 +673,7 @@ def find_consumption_delta_per_variable(df_bl, df_st, merge_on=None):
     return df[['delta', 'variable']]
 
 
-# In[168]:
+# In[23]:
 
 
 def subplots_stack(df1, df2, figsize):
@@ -689,7 +689,7 @@ def subplots_stack(df1, df2, figsize):
 
 # ### High-level plotting functions:
 
-# In[169]:
+# In[24]:
 
 
 def plot_ci_by_hour_single_figure(df, lst_main_labels, hue_order):
@@ -861,7 +861,7 @@ def make_stackplots_from_power(df, lst_main_labels):
     )
 
 
-# In[170]:
+# In[25]:
 
 
 def plot_ci_per_dow_single_fig_from_energy(df):
@@ -963,7 +963,7 @@ def plot_ci_per_dow_single_fig_from_power(df, lst_main_labels):
     )
 
 
-# In[171]:
+# In[26]:
 
 
 def find_daily_mean_cons_delta_from_power(df, lst_main_labels):
@@ -1054,7 +1054,7 @@ def find_mean_daily_cons_delta_from_energy(df):
 
 # ### New functions:
 
-# In[172]:
+# In[27]:
 
 
 def plot_aggregated_hourly_consumption_from_energy(df):
@@ -1104,7 +1104,7 @@ def plot_aggregated_hourly_consumption_from_energy(df):
     )
 
 
-# In[173]:
+# In[28]:
 
 
 def calculate_savings_from_energy(df, cop_per_kwh):
@@ -1153,7 +1153,7 @@ def calculate_savings_from_energy(df, cop_per_kwh):
         lst_monthly.append(mean_monthly_cons_delta)
 
 
-# In[174]:
+# In[29]:
 
 
 def calculate_savings_from_power(df, cop_per_kwh):
@@ -1216,7 +1216,7 @@ def calculate_savings_from_power(df, cop_per_kwh):
         lst_monthly.append(mean_monthly_cons_delta)
 
 
-# In[175]:
+# In[30]:
 
 
 def calculate_savings_from_power_v2(df, cop_per_kwh):
@@ -1282,7 +1282,7 @@ def calculate_savings_from_power_v2(df, cop_per_kwh):
 
 # ### Advanced configuration:
 
-# In[176]:
+# In[31]:
 
 
 # Cleaning parameters
@@ -1302,7 +1302,7 @@ SMOOTHING_WINDOW = 4 # '180min'
 confidence_interval = 99
 
 
-# In[177]:
+# In[32]:
 
 
 # Ubidots API
@@ -1327,7 +1327,7 @@ DAYS_PER_MONTH = 365.25/12
 agg_frequency = '1H'
 
 
-# In[178]:
+# In[33]:
 
 
 dct_dow = {
@@ -1341,7 +1341,7 @@ dct_dow = {
 }
 
 
-# In[179]:
+# In[34]:
 
 
 plt.figure()
@@ -1352,13 +1352,13 @@ plt.close()
 
 # ### Parameters: 
 
-# In[180]:
+# In[35]:
 
 
 PICKLED_DATA_FILENAME = 'parsed_response_bello.pkl'
 
 
-# In[181]:
+# In[36]:
 
 
 save_figures = False
@@ -1386,7 +1386,7 @@ DATE_INTERVALS_TO_DISCARD = [
 ]
 
 
-# In[182]:
+# In[37]:
 
 
 device_group_label = 'homecenter-sedes'
@@ -1411,7 +1411,7 @@ show_variable_labels_to_request()
 
 # ### Request and parse:
 
-# In[183]:
+# In[38]:
 
 
 df = None
@@ -1427,13 +1427,13 @@ show_response_contents(df)
 
 # ### Post-process:
 
-# In[184]:
+# In[39]:
 
 
 validate_cleaning = False
 
 
-# In[185]:
+# In[40]:
 
 
 # df, df_raw = post_process_data(df)
@@ -1441,7 +1441,7 @@ df = post_process_data(df)
 df
 
 
-# In[186]:
+# In[41]:
 
 
 show_outlier_counts(df)
@@ -1465,7 +1465,7 @@ if (validate_cleaning is True):
     
 
 
-# In[187]:
+# In[42]:
 
 
 is_clean_energy = (
@@ -1488,14 +1488,14 @@ df_baseline_month, df_study_month = split_into_baseline_and_study(
 )
 
 
-# In[188]:
+# In[43]:
 
 
 consumo_baseline = df_baseline_month[-3:]["value"].mean()
 consumo_estudio = df_study_month["value"].mean()
 
 
-# In[189]:
+# In[44]:
 
 
 
@@ -1509,7 +1509,7 @@ print(f"El consumo de energía durante el periodo de observación fue: {consumo_
 
 # #### Análisis de Pareto:
 
-# In[191]:
+# In[45]:
 
 
 lst_main_labels, hue_order, s_pareto = run_pareto_analysis(df)
@@ -1520,13 +1520,13 @@ print(json.dumps(lst_main_labels, sort_keys=True, indent=4))
 
 # #### Figuras día típico:
 
-# In[192]:
+# In[46]:
 
 
 plot_aggregated_hourly_consumption_from_energy(df)
 
 
-# In[193]:
+# In[47]:
 
 
 plot_ci_by_hour_single_figure(df, lst_main_labels, hue_order)
@@ -1534,7 +1534,7 @@ plot_ci_by_hour_single_figure(df, lst_main_labels, hue_order)
 
 # #### Figuras por día de la semana:
 
-# In[194]:
+# In[48]:
 
 
 plot_ci_per_dow_multiple_fig_from_power(df, lst_main_labels, hue_order)

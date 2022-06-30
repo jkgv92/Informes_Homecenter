@@ -6,7 +6,7 @@
 
 # ## Modules:
 
-# In[135]:
+# In[1]:
 
 
 get_ipython().run_line_magic('load_ext', 'autoreload')
@@ -39,7 +39,7 @@ import os
 
 # ### General purpose functions:
 
-# In[136]:
+# In[2]:
 
 
 def calculate_interval_duration_days(interval):
@@ -91,7 +91,7 @@ def make_month_column(df):
 
 # ### Data-fetching functions:
 
-# In[138]:
+# In[3]:
 
 
 def make_request(LST_DEVICE_ID_TO_REQUEST, LST_VAR_LABELS, LST_VAR_FIELDS, date_interval, DATE_FORMAT, _TOKEN):
@@ -200,7 +200,7 @@ def show_variable_labels_to_request():
 
 # ### Post-processing functions:
 
-# In[140]:
+# In[4]:
 
 
 def show_outlier_counts(df):
@@ -318,7 +318,7 @@ def run_cleaning_analysis(variable=None, start_date=None, end_date=None, bins=No
 
 # ### Cell-block functions:
 
-# In[144]:
+# In[5]:
 
 
 def request_data():
@@ -395,7 +395,7 @@ def post_process_data(df):
 
 # ### Low-level plotting functions:
 
-# In[146]:
+# In[6]:
 
 
 def split_into_baseline_and_study(df, baseline_interval, study_interval):
@@ -627,7 +627,7 @@ def subplots_stack(df1, df2, figsize):
 
 # ### High-level plotting functions:
 
-# In[157]:
+# In[7]:
 
 
 def plot_ci_by_hour_single_figure(df, lst_main_labels, hue_order):
@@ -984,7 +984,7 @@ def find_mean_daily_cons_delta_from_energy(df):
 
 # ### New functions:
 
-# In[160]:
+# In[8]:
 
 
 def plot_aggregated_hourly_consumption_from_energy(df):
@@ -1200,7 +1200,7 @@ def calculate_savings_from_power_v2(df, cop_per_kwh):
 
 # ### Advanced configuration:
 
-# In[164]:
+# In[9]:
 
 
 # Cleaning parameters
@@ -1220,7 +1220,7 @@ SMOOTHING_WINDOW = 4 # '180min'
 confidence_interval = 99
 
 
-# In[165]:
+# In[10]:
 
 
 # Ubidots API
@@ -1245,7 +1245,7 @@ DAYS_PER_MONTH = 365.25/12
 agg_frequency = '1H'
 
 
-# In[166]:
+# In[11]:
 
 
 dct_dow = {
@@ -1259,7 +1259,7 @@ dct_dow = {
 }
 
 
-# In[167]:
+# In[12]:
 
 
 plt.figure()
@@ -1270,13 +1270,13 @@ plt.close()
 
 # ### Parameters: 
 
-# In[168]:
+# In[13]:
 
 
 PICKLED_DATA_FILENAME = 'parsed_response_San_juan.pkl'
 
 
-# In[169]:
+# In[14]:
 
 
 save_figures = False
@@ -1304,7 +1304,7 @@ DATE_INTERVALS_TO_DISCARD = [
 ]
 
 
-# In[170]:
+# In[15]:
 
 
 device_group_label = 'homecenter-sedes'
@@ -1329,7 +1329,7 @@ show_variable_labels_to_request()
 
 # ### Request and parse:
 
-# In[171]:
+# In[16]:
 
 
 df = None
@@ -1345,13 +1345,13 @@ show_response_contents(df)
 
 # ### Post-process:
 
-# In[172]:
+# In[17]:
 
 
 validate_cleaning = False
 
 
-# In[173]:
+# In[18]:
 
 
 # df, df_raw = post_process_data(df)
@@ -1359,7 +1359,7 @@ df = post_process_data(df)
 df
 
 
-# In[174]:
+# In[19]:
 
 
 show_outlier_counts(df)
@@ -1383,7 +1383,7 @@ if (validate_cleaning is True):
     
 
 
-# In[175]:
+# In[20]:
 
 
 is_clean_energy = (
@@ -1406,14 +1406,14 @@ df_baseline_month, df_study_month = split_into_baseline_and_study(
 )
 
 
-# In[176]:
+# In[21]:
 
 
 consumo_baseline = df_baseline_month[-3:]["value"].mean()
 consumo_estudio = df_study_month["value"].mean()
 
 
-# In[184]:
+# In[22]:
 
 
 
@@ -1427,7 +1427,7 @@ print(f"El consumo de energía durante el periodo de observación fue: {round(co
 
 # #### Análisis de Pareto:
 
-# In[180]:
+# In[23]:
 
 
 lst_main_labels, hue_order, s_pareto = run_pareto_analysis(df)
@@ -1438,13 +1438,13 @@ print(json.dumps(lst_main_labels, sort_keys=True, indent=4))
 
 # #### Figuras día típico:
 
-# In[181]:
+# In[24]:
 
 
 plot_aggregated_hourly_consumption_from_energy(df)
 
 
-# In[182]:
+# In[25]:
 
 
 plot_ci_by_hour_single_figure(df, lst_main_labels, hue_order)
@@ -1452,7 +1452,7 @@ plot_ci_by_hour_single_figure(df, lst_main_labels, hue_order)
 
 # #### Figuras por día de la semana:
 
-# In[183]:
+# In[26]:
 
 
 plot_ci_per_dow_multiple_fig_from_power(df, lst_main_labels, hue_order)
