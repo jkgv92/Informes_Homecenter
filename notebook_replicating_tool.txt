@@ -1,0 +1,75 @@
+device_label = 'hc---cali-norte'
+PICKLED_DATA_FILENAME = 'parsed_response_Cali_norte.pkl'
+LST_DEVICE_ID_TO_REQUEST = ['623c9c3ddc4fea000cf155b1']
+
+
+
+device_label = 'hc-cali-sur'
+PICKLED_DATA_FILENAME = 'parsed_response_Cali_sur.pkl'
+LST_DEVICE_ID_TO_REQUEST = ['623c77baba8978a3f2083cfd']
+
+
+
+device_label = 'hc---bucaramanga'
+PICKLED_DATA_FILENAME = 'parsed_response_Bucaramanga.pkl'
+LST_DEVICE_ID_TO_REQUEST = ['623c686627da4ba193edb89a']
+
+
+
+device_label = 'hc---palmira'
+PICKLED_DATA_FILENAME = 'parsed_response_Cali_sur.pkl'
+LST_DEVICE_ID_TO_REQUEST = ['623b71064e9390adcdbf03fa']
+
+
+
+device_label = 'hc-funza'
+PICKLED_DATA_FILENAME = 'parsed_response_Funza.pkl'
+LST_DEVICE_ID_TO_REQUEST = ['623b27b01d0b0e9d73fd8ae7']
+
+
+
+device_label = 'calle-80'
+PICKLED_DATA_FILENAME = 'parsed_response_Calle80.pkl'
+LST_DEVICE_ID_TO_REQUEST = ['621ccfd4c64eb2430cfc5c2c']
+
+
+
+device_label = 'cedritos'
+PICKLED_DATA_FILENAME = 'parsed_response_Cedritos.pkl'
+LST_DEVICE_ID_TO_REQUEST = ['621cca20024f3e3b10a7a8cf']
+
+
+
+device_label = 'hc-san-fernando'
+PICKLED_DATA_FILENAME = 'parsed_response_San_Fernando.pkl'
+LST_DEVICE_ID_TO_REQUEST = ['6219304ea12f9d7842663540']
+
+
+
+device_label = 'hc-la-popa'
+PICKLED_DATA_FILENAME = 'parsed_response_Popa.pkl'
+LST_DEVICE_ID_TO_REQUEST = ['6218e8fd5504633b764cecc0']
+
+
+
+device_label = 'hc-baq'
+PICKLED_DATA_FILENAME = 'parsed_response_Barranquilla.pkl'
+LST_DEVICE_ID_TO_REQUEST = ['620e6052b137f31730f8b610']
+
+
+
+device_label = 'hc-tintal'
+PICKLED_DATA_FILENAME = 'parsed_response_Tintal.pkl'
+LST_DEVICE_ID_TO_REQUEST = ['61fd76a7c340ee05ab044cbc']
+
+
+
+device_label = 'hc-bello'
+PICKLED_DATA_FILENAME = 'parsed_response_bello.pkl'
+LST_DEVICE_ID_TO_REQUEST = ['61fc495f3ac63735789d5492']
+
+
+
+device_label = 'hc-san-juan'
+PICKLED_DATA_FILENAME = 'parsed_response_San_juan.pkl'
+LST_DEVICE_ID_TO_REQUEST = ['61fbfb883ac637252222607e']
