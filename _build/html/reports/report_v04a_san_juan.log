@@ -65,7 +65,7 @@ Input [1;32mIn [1][0m, in [0;36m<cell line: 39>[1;34m()[0m
 [0;32m     38[0m [38;5;28;01mimport[39;00m [38;5;21;01mconfig[39;00m [38;5;28;01mas[39;00m [38;5;21;01mcfg[39;00m
 [1;32m---> 39[0m [38;5;28;01mimport[39;00m [38;5;21;01mReport_library[39;00m [38;5;28;01mas[39;00m [38;5;21;01mReport[39;00m
 
-File [1;32mD:\OneDrive - CELSIA S.A E.S.P\Proyectos\Eficiencia_Energetica\Homecenter\informe_homecenter\Report_library.py:18[0m, in [0;36m<module>[1;34m[0m
+File [1;32mD:\OneDrive - CELSIA S.A E.S.P\Proyectos\Eficiencia_Energetica\Homecenter\Informes_Homecenter\Report_library.py:18[0m, in [0;36m<module>[1;34m[0m
 [0;32m     14[0m [38;5;66;03m# Base configuration -----------------------------------------------------------[39;00m
 [0;32m     15[0m 
 [0;32m     16[0m [38;5;66;03m# Ubidots API[39;00m
