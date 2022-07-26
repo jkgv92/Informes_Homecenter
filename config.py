@@ -47,7 +47,8 @@ USE_PICKLED_DATA = True
 
 
 # Plotting parameters
-width = 17.362#24.579# 21.19
+# try 17.362, 24.579, 21.19 for widths
+width = 17.362
 height = width*5.5/12.5
 WIDE_FIGURE_SIZE = (width, height)
 SAVE_FIGURES = False
