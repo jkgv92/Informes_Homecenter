@@ -2,7 +2,6 @@
 # coding: utf-8
 
 # # Sede: Cali Sur
-# 
 
 # In[1]:
 
@@ -13,36 +12,20 @@ get_ipython().run_line_magic('autoreload', '2')
 from Ubidots_library_acruz import Ubidots
 
 import warnings
-# warnings.filterwarnings("ignore")
+warnings.filterwarnings("ignore")
 
 import pandas as pd
 import numpy as np
-from datetime import datetime
-
-import os
-from dotenv import dotenv_values
-config = dotenv_values(".env")
-
-import requests
-import json
 
 from matplotlib import pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 from matplotlib.ticker import PercentFormatter
 import seaborn as sns
 
-
-from sys import exit
-
-import os
-
 import plotly.io as pio
 import plotly.graph_objects as go
 import plotly.express as px
-import plotly.offline as py
-from plotly.subplots import make_subplots
 
-pio.renderers.default = "notebook"
 
 import config as cfg
 import Report_library as Report
@@ -87,14 +70,21 @@ DATE_INTERVALS_TO_DISCARD = cfg.DATE_INTERVALS_TO_DISCARD
 df_request_dates = pd.read_excel('request_dates.xlsx')
 df_request_dates.set_index('device', inplace=True)
 
+use_pickled_data = cfg.USE_PICKLED_DATA
+
 
 # If this isn't done before plotting with Seaborn
 # the first plot won't be the right size
 plt.figure()
 plt.show()
-sns.set(rc={'figure.figsize': wide_figure_size})
-sns.set(font=CELSIA_FONT)
+sns.set_context('notebook')
+sns.set_style("whitegrid")
+sns.set(
+    rc={'figure.figsize': wide_figure_size},
+    font=CELSIA_FONT
+)
 plt.close()
+pio.renderers.default = "notebook"
 
 # Create the colormap for all heatmaps
 colorlist=[big_palette[1], big_palette[0], big_palette[4]]
@@ -102,7 +92,6 @@ newcmp = LinearSegmentedColormap.from_list('my_cmap', colors=colorlist, N=256)
 
 
 ## POI level configuration
-use_pickled_data = True
 device_label = 'hc-cali-sur'
 PICKLED_DATA_FILENAME = 'parsed_response_Cali_sur.pkl'
 LST_DEVICE_ID_TO_REQUEST = ['623c77baba8978a3f2083cfd']
@@ -414,7 +403,7 @@ fig.update_layout(
     font_size=12,
     font_color=lst_big_colors[1],
     title_x=0.5,
-    width=750,
+    width=1250,
     height=550,
 )
 
@@ -434,21 +423,38 @@ fig.show()
 # In[8]:
 
 
-sns.barplot(x="day", y="value", data=df_st_total_ea_daily, color=lst_big_colors[0])
-plt.title("Consumo diario de energía activa (kWh) en el último mes")
+sns_bar_1 = sns.barplot(x="day", y="value", data=df_st_total_ea_daily, color=lst_big_colors[0])
+sns_bar_1.set_title("Consumo diario de energía activa (kWh) en el último mes", fontsize=17.5)
+plt.show()
 
 
 # In[9]:
 
 
-sns.barplot(x="day", y="value", hue="variable", data=pd.concat([df_st_ea_daily, df_st_total_ea_daily]))#, palette=multi_palette)
-plt.title("Consumo diario de energía activa (kWh) en el último mes")
+sns_bar_2 = sns.barplot(x="day", y="value", hue="variable", data=pd.concat([df_st_ea_daily, df_st_total_ea_daily]))#, palette=multi_palette)
+sns_bar_2.set_title("Consumo diario de energía activa (kWh) en el último mes", fontsize=17.5)
+plt.legend(loc='upper right')
+plt.show()
+
+
+# In[10]:
+
+
+colorlist=[big_palette[1], big_palette[0], big_palette[4]]
+newcmp = LinearSegmentedColormap.from_list('my_cmap', colors=colorlist, N=256)
+
+is_energy = df_st['variable'].isin([TOTAL_ACTIVE_ENERGY_LABEL] + list(ACTIVE_ENERGY_LABELS))
+df_st_ea_corr_matrix = df_st[is_energy].pivot(columns='variable', values='value').astype(float).corr()
+
+norm=plt.Normalize(0,df_st_ea_corr_matrix.max().max())
+sns_heat_1 = sns.heatmap(df_st_ea_corr_matrix, annot=False, cmap=newcmp, norm=norm, linewidths=.5)
+sns_heat_1.set_title("Matriz de correlación entre consumo de circuitos", fontsize=17.5)
 plt.show()
 
 
 # A continuación se muestran los consumos horarios típicos. Las regiones sombreadas representan un intervalo de confianza de 95% para la línea base.
 
-# In[10]:
+# In[11]:
 
 
 df_plot_bl = df_bl_total_ea_hourly
@@ -478,14 +484,14 @@ sns.lineplot(
     color=lst_big_colors[1],
     label='Consumo actual'
 )
-plt.title(f"{device_name} - Consumo total horario")
+plt.title(f"{device_name} - Consumo total horario", fontsize=17.5)
 plt.xlabel('Hora del día')
 plt.ylabel('Consumo horario [kWh]')
 plt.legend()
 plt.show()
 
 
-# In[11]:
+# In[12]:
 
 
 df_plot_bl = df_bl_ea_hourly_lumped
@@ -518,14 +524,14 @@ sns.lineplot(
     estimator=np.mean,
     palette=sns.color_palette(lst_big_colors[0:len(hue_order)])
 )
-plt.title(f"{device_name} - Consumo total horario")
+plt.title(f"{device_name} - Consumo total horario", fontsize=17.5)
 plt.xlabel('Hora del día')
 plt.ylabel('Consumo horario [kWh]')
 plt.legend()
 plt.show()
 
 
-# In[12]:
+# In[13]:
 
 
 hue_order = hue_order_pa
@@ -558,14 +564,14 @@ for day in dct_dow.values():
         estimator=np.mean,
         palette=sns.color_palette(lst_big_colors[0:len(hue_order)])
     )
-    plt.title(f"{device_name} - Consumo horario para el día {day}")
+    plt.title(f"{device_name} - Consumo horario para el día {day}", fontsize=17.5)
     plt.xlabel('Hora del día')
     plt.ylabel('Consumo horario [kWh]')
     plt.legend()
     plt.show()
 
 
-# In[13]:
+# In[14]:
 
 
 colorlist=[big_palette[1], big_palette[0], big_palette[4]]
@@ -576,12 +582,13 @@ b = df_st_total_ea_hourly[["day","hour", "value"]]
 matrix = b.pivot("day", "hour", "value")
 matrix = matrix.astype(float)
 norm=plt.Normalize(0,matrix.max().max())
-sns.heatmap(matrix, annot=False, cmap=newcmp, norm=norm, linewidths=.5)
-plt.title("Matriz de consumo horario (frontera) [kWh] en el último mes")
+sns_heat_2 = sns.heatmap(matrix, annot=False, cmap=newcmp, norm=norm, linewidths=.5)
+sns_heat_2.set_title("Matriz de consumo horario (frontera) [kWh] en el último mes", fontsize=17.5)
+
 plt.show()
 
 
-# In[14]:
+# In[15]:
 
 
 df_plot = df_st_pa_hourly_lumped
@@ -600,14 +607,14 @@ sns.lineplot(
     # label=" aa [kWh]"
 )
 
-plt.title("Curva de potencia de los circuitos medidos (kWh) en el último mes")
+plt.title("Curva de potencia de los circuitos medidos (kWh) en el último mes", fontsize=17.5)
 plt.xlabel('Fecha')
 plt.ylabel('Consumo horario')
 plt.legend()
 plt.show()
 
 
-# In[15]:
+# In[16]:
 
 
 sns.barplot(
@@ -619,7 +626,7 @@ sns.barplot(
         ci=None,
         color=lst_big_colors[0],
     )
-plt.title("Consumo nocturno de energía reactiva (kWh) en el último mes")
+plt.title("Consumo nocturno de energía reactiva (kWh) en el último mes", fontsize=17.5)
 plt.xlabel('Fecha')
 plt.ylabel('Consumo [kWh]')
 plt.show()

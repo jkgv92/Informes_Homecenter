@@ -8,8 +8,10 @@ from matplotlib.ticker import PercentFormatter
 import seaborn as sns
 from sys import exit
 import config as cfg
-import os
 
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # Base configuration -----------------------------------------------------------
 

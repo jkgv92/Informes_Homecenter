@@ -5,12 +5,6 @@
 # 
 # Junio 2022
 
-# In[ ]:
-
-
-
-
-
 # ¡Hola!, te presentamos el informe correspondiente a tus consumos del mes de junio de 2022. A continuación vas a encontrar un resumen de los consumos realizados de forma acumulada. Para esto encontrarás una serie de gráficas diseñadas para dar un vistazo a los consumos por sede. Finalmente, encontrarás un informe detallado para cada sede.
 # 
 # 
@@ -34,8 +28,6 @@ import numpy as np
 from datetime import datetime
 
 import os
-from dotenv import dotenv_values
-config = dotenv_values(".env")
 
 import requests
 import json
@@ -114,7 +106,7 @@ newcmp = LinearSegmentedColormap.from_list('my_cmap', colors=colorlist, N=256)
 
 
 ## POI level configuration
-use_pickled_data = False
+use_pickled_data = True
 PICKLED_DATA_FILENAME = 'parsed_response_acumulado.pkl'
 
 # Ubidots data parameters
@@ -135,6 +127,10 @@ STUDY_DATE_INTERVAL = {
     'start': '2022-06-01',
     'end': '2022-06-30'
 }
+
+df_hvac = None
+df_hvac = pd.read_excel('homecenter_store_cooling_data.xlsx')
+df_hvac.set_index('device', inplace=True)
 
 
 # ## Data loading
@@ -290,7 +286,7 @@ fig.update_layout(
     font_size=12,
     font_color=lst_big_colors[1],
     title_x=0.5,
-    width=750,
+    width=1250,
     height=550,
 )
 
@@ -334,7 +330,7 @@ fig.update_layout(
     font_size=12,
     font_color=lst_big_colors[1],
     title_x=0.5,
-    width=750,
+    width=1250,
     height=550,
 )
 
@@ -354,6 +350,127 @@ fig.show()
 # En las dos figuras anteriores muestran el consumo total de energía activa por sede y por circuito respectivamente.
 
 # In[8]:
+
+
+df_selection = df_st[df_st['variable']=='ea-total']
+df_st_ea_total_sum = df_selection.groupby(by=['device', 'device_name']).agg({'value':np.sum})
+df_st_ea_total_sum.reset_index(drop=False, inplace=True)
+df_st_ea_total_sum.set_index('device', drop=True, inplace=True)
+df_st_ea_total_sum['value'] = df_st_ea_total_sum['value'].astype(float)
+df_st_ea_total_sum.rename(columns={'value':'ea-total'}, inplace=True)
+
+
+df_selection = df_st[df_st['variable']=='ea-equipos-de-climatizacion']
+df_st_ea_hvac_sum = df_selection.groupby(by=['device', 'device_name']).agg({'value':np.sum})
+df_st_ea_hvac_sum.reset_index(drop=False, inplace=True)
+df_st_ea_hvac_sum.set_index('device', drop=True, inplace=True)
+df_st_ea_hvac_sum['value'] = df_st_ea_hvac_sum['value'].astype(float)
+df_st_ea_hvac_sum.rename(columns={'value':'ea-equipos-de-climatizacion'}, inplace=True)
+
+
+df_selection = df_st[df_st['variable']=='ea-iluminacion-principal']
+df_st_ea_main_lights_sum = df_selection.groupby(by=['device', 'device_name']).agg({'value':np.sum})
+df_st_ea_main_lights_sum.reset_index(drop=False, inplace=True)
+df_st_ea_main_lights_sum.set_index('device', drop=True, inplace=True)
+df_st_ea_main_lights_sum['value'] = df_st_ea_main_lights_sum['value'].astype(float)
+df_st_ea_main_lights_sum.rename(columns={'value':'ea-iluminacion-principal'}, inplace=True)
+
+
+df_kpi = df_hvac.copy()
+df_kpi = pd.merge(df_kpi, df_st_ea_total_sum, left_index=True, right_index=True, how='outer')
+df_kpi = pd.merge(df_kpi, df_st_ea_hvac_sum.drop(columns='device_name'), left_index=True, right_index=True, how='outer')
+df_kpi = pd.merge(df_kpi, df_st_ea_main_lights_sum.drop(columns='device_name'), left_index=True, right_index=True, how='outer')
+
+df_kpi['hvac_kwh_per_tr'] = (df_kpi['ea-equipos-de-climatizacion'] / df_kpi['refrigeration_tons']).round(2)
+df_kpi['hvac_kwh_per_m2'] = (df_kpi['ea-equipos-de-climatizacion'] / df_kpi['sv_area']).round(2)
+df_kpi['main_lights_kwh_per_m2'] = (df_kpi['ea-iluminacion-principal'] / df_kpi['sv_area']).round(2)
+df_kpi['total_kwh_per_m2'] = (df_kpi['ea-total'] / df_kpi['sv_area']).round(2)
+
+df_kpi.sort_values(by='ea-equipos-de-climatizacion', inplace=True)
+df_kpi.dropna(how='any', inplace=True)
+df_kpi.sort_values(by='total_kwh_per_m2', ascending=False, inplace=True)
+
+df_kpi_short = df_kpi[['device_name','total_kwh_per_m2','hvac_kwh_per_m2','main_lights_kwh_per_m2']]
+
+
+# In[9]:
+
+
+df_kpi_long = df_kpi_short.melt(id_vars='device_name', value_vars=['total_kwh_per_m2','hvac_kwh_per_m2','main_lights_kwh_per_m2'])
+
+df_kpi_long['variable'] = df_kpi_long['variable'].map({
+    'total_kwh_per_m2':'Total',
+    'hvac_kwh_per_m2':'Climatización',
+    'main_lights_kwh_per_m2':'Iluminación principal',
+})
+
+
+fig = px.bar(
+    df_kpi_long,
+    x="device_name",
+    y="value",
+    color='variable',
+    color_discrete_sequence=lst_big_colors[0:3],
+    barmode='group',
+    labels={'device_name':'Sede', 'value':'Consumo por unidad de área [kWh/m^2]'},
+    title="Consumo total de energía activa por unidad de área por sede [kWh/m^2]",
+)
+
+fig.update_layout(
+    font_family=CELSIA_FONT,
+    font_size=12,
+    font_color=lst_big_colors[1],
+    title_x=0.5,
+    width=1250,
+    height=550,
+    # xaxis=dict(showgrid=False),
+    # yaxis=dict(showgrid=False),
+    template='plotly_white'
+)
+
+fig.update_xaxes(
+    tickangle=-45
+)
+
+fig.show()
+
+
+# La figura anterior consiste de indicadores de consumo por unidad de área para los consumos principales.
+
+# In[10]:
+
+
+fig = px.bar(
+    df_kpi.sort_values(by='hvac_kwh_per_tr', ascending=False),
+    x="device_name",
+    y="hvac_kwh_per_tr",
+    color_discrete_sequence=[lst_big_colors[0]],
+    labels={'device_name':'Sede', 'hvac_kwh_per_tr':'Consumo por tonelada de refrigeración [kWh/TR]'},
+    title="Consumo de energía activa para climatización por tonelada de refrigeración [kWh/TR]",
+)
+
+fig.update_layout(
+    font_family=CELSIA_FONT,
+    font_size=12,
+    font_color=lst_big_colors[1],
+    title_x=0.5,
+    width=1250,
+    height=550,
+    # xaxis=dict(showgrid=False),
+    # yaxis=dict(showgrid=False),
+    template='plotly_white'
+)
+
+fig.update_xaxes(
+    tickangle=-45
+)
+
+fig.show()
+
+
+# El indicador de kWh por tonelada de refrigeración tiene unidades de tiempo y es una medida de utilización, no de eficiencia.
+
+# In[11]:
 
 
 # 3-Layer Sankey Diagram
@@ -456,7 +573,7 @@ fig.show()
 
 # En la figura anterior se puede observar la contribución de cada sede al consumo de cada tipo de circuito, en kWh.
 
-# In[9]:
+# In[12]:
 
 
 lataxis_range, lonaxis_range = Report.center_colombia()
@@ -489,7 +606,7 @@ fig.update_layout(
     title_text="Consumo total de energía activa por sede [MWh]",
     # labels={'device_name':'Sede', 'consumption_mwh':'Consumo total [MWh]'},
     title_x=0.5,
-    width=750,
+    width=1250,
     height=550,
 
     margin={"r":50,"t":50,"l":50,"b":50},

@@ -1,0 +1,16 @@
+- [ ] Unificar las tablas de excel como config.xlsx ???
+
+- [ ] Bar chart ppal pasar a stacked (el Sankey ya lo hace)
+
+- [x] Bar chart con:
+    cosumo total por kWh_front/m2
+    consumo aires por kWh_aa/m2
+    consumo ilu por kWh_ilu/m2
+
+ 
+- [x] Bar chart de kWh_aa/TR
+
+- [ ] Correlación entre kWh_front/m2, kWh_aa/TR y kWh_ilu/m2 ???
+- [ ] Mapa de calor para correlación entre consumo de circuitos
+
+

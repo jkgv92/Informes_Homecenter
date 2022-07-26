@@ -43,10 +43,13 @@ lst_nighttime_hours = [0, 1, 2, 3, 4, 5, 19, 20, 21, 22, 23]
 # Ubidots data parameters
 DEVICE_GROUP_LABEL = 'homecenter-sedes'
 DATA_FREQUENCY = '15T'
+USE_PICKLED_DATA = True
 
 
 # Plotting parameters
-WIDE_FIGURE_SIZE = (21,7)
+width = 17.362#24.579# 21.19
+height = width*5.5/12.5
+WIDE_FIGURE_SIZE = (width, height)
 SAVE_FIGURES = False
 SHOW_OPTIONAL_FIGURES = False
 
