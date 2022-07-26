@@ -75,14 +75,15 @@ use_pickled_data = cfg.USE_PICKLED_DATA
 
 # If this isn't done before plotting with Seaborn
 # the first plot won't be the right size
-plt.figure()
-plt.show()
 sns.set_context('notebook')
 sns.set_style("whitegrid")
 sns.set(
     rc={'figure.figsize': wide_figure_size},
     font=CELSIA_FONT
 )
+
+plt.figure()
+plt.show()
 plt.close()
 pio.renderers.default = "notebook"
 

@@ -9,8 +9,6 @@
 
  
 - [x] Bar chart de kWh_aa/TR
-
-- [ ] Correlación entre kWh_front/m2, kWh_aa/TR y kWh_ilu/m2 ???
-- [ ] Mapa de calor para correlación entre consumo de circuitos
+- [x] Mapa de calor para correlación entre consumo de circuitos
 
 
