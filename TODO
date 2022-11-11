@@ -1,0 +1,3 @@
+- Place paths in the .env so that it's easy to manipulate them
+- Make two request notebooks and make sure they're easy to understan
+- Write a README explaining how to run this report

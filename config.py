@@ -1,4 +1,4 @@
-## Base configuration ----------------------------------------------------------
+# Base configuration ----------------------------------------------------------
 
 lst_primary_pallete = ['#d5752d', '#59595b']
 lst_secondary_palette = ['#13a2e1', '#00be91', '#fff65e', '#003fa2', '#ca0045']
@@ -10,9 +10,24 @@ SCATTERGEO_MAX_MARKER_AREA = 1000
 
 # Ubidots API
 API_URL = 'https://industrial.api.ubidots.com/api/v1.6/devices/'
-# _TOKEN: str = config["token"]
-LST_VAR_FIELDS = ["value.value", "variable.id", "device.label", "device.name", "timestamp"]
-LST_HEADERS = ['value', 'variable', 'device', 'device_name', 'timestamp']
+LST_VAR_FIELDS = [
+    "value.value",
+    "variable.id",
+    # "variable.name",
+    "device.label",
+    "device.name",
+    "timestamp"
+]
+
+LST_HEADERS = [
+    'value',
+    'variable',
+    # 'variable_name',
+    'device',
+    'device_name',
+    'timestamp'
+]
+
 
 # Date and Time
 DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%S"
@@ -22,31 +37,32 @@ LOCAL_TIMEZONE = 'America/Bogota'
 # Plotting parameters
 CONFIDENCE_INTERVAL = 95
 
+
 # General parameters
 ALLOWED_DATE_OVERLAP = 0
 DAYS_PER_MONTH = 365.25/12
 
 dct_dow = {
-    0:'lunes',
-    1:'martes',
-    2:'miércoles',
-    3:'jueves',
-    4:'viernes',
-    5:'sábado',
-    6:'domingo',
+    0: 'lunes',
+    1: 'martes',
+    2: 'miércoles',
+    3: 'jueves',
+    4: 'viernes',
+    5: 'sábado',
+    6: 'domingo',
 }
 
 lst_nighttime_hours = [0, 1, 2, 3, 4, 5, 19, 20, 21, 22, 23]
-
-## Client level configuration --------------------------------------------------
+list_overnight_hours = [0, 1, 2, 3, 4, 5, 21, 22, 23]
 
 # Ubidots data parameters
 DEVICE_GROUP_LABEL = 'homecenter-sedes'
 DATA_FREQUENCY = '15T'
 USE_PICKLED_DATA = True
-
+HOUR_FREQUENCY = '1h'
 
 # Plotting parameters
+golden_ratio = (1+(5)**0.5)/2
 # try 17.362, 24.579, 21.19 for widths
 width = 17.362
 height = width*5.5/12.5
@@ -54,8 +70,11 @@ WIDE_FIGURE_SIZE = (width, height)
 SAVE_FIGURES = False
 SHOW_OPTIONAL_FIGURES = False
 
+plotly_width = 800# 1250
+plotly_height = plotly_width / golden_ratio # 550
+
 # Cleaning parameters
-CLEAN_DATA = True
+CLEAN_DATA = False
 VALIDATE_CLEANING = False
 
 SHORT_WINDOW = '5h'
@@ -67,6 +86,9 @@ LONG_CONFIDENCE_INTERVAL = 99
 SMOOTHING_METHOD = 'mean'
 SMOOTHING_WINDOW = '3h'
 
+REFERENCE_POWER_PERCENTILE = 99
+
+# General parameters
 # General parameters
 COP_PER_KWH = 692.29
 
@@ -120,7 +142,7 @@ ALL_VARIABLE_LABELS = (
     'pa-talleres'
 )
 
-BLACKLISTED_VARIABLE_LABELS = (
+EXCLUDED_VARIABLE_LABELS = (
     'ac-tension-l1',    # debugging response <500>
     'ac-tension-l2',    # debugging response <500>
     'ac-tension-l3',    # debugging response <500>
@@ -204,25 +226,56 @@ TOTAL_REACTIVE_ENERGY_LABEL = 'er-total'
 SUB_STR = ('ea-', 'pa-', 'ac-')
 
 DATE_INTERVALS_TO_DISCARD = {
-    'hc---cali-norte':[],
-    'hc-cali-sur':[],
-    'hc---bucaramanga':[],
+    'hc---cali-norte':[
+        ['2022-03-23','2022-05-24'], # power scaling errors
+        ['2022-04-29 00:00:00','2022-04-29 11:59:59'] # huge consumption outlier
+    ],
+    'hc-cali-sur':[
+        ['2022-03-10','2022-05-21'] # scaling errors
+    ],
+    'hc---bucaramanga':[
+        ['2022-03-25','2022-04-02'] # scaling errors
+    ],
     'hc---palmira':[
-        ['2022-03-25 12:00:00','2022-03-25 14:00:00']
+        ['2022-03-25 12:00:00','2022-03-25 14:00:00'] # huge consumption outlier
     ],
-    'hc-funza':[],
+    'hc-funza':[
+
+    ],
     'calle-80':[
-        ['2022-06-16 10:00:00','2022-06-16 16:00:00']
+        ['2022-06-16 10:00:00','2022-06-16 16:00:00'] # huge consumption outlier
     ],
-    'cedritos':[],
+    'cedritos':[
+        ['2022-01-01', '2022-05-20'] # power scaling errors
+    ],
     'hc-san-fernando':[
-        ['2022-04-23', '2022-05-4']
+        ['2022-02-23', '2022-04-24'], # consumption errors
+        ['2022-04-23', '2022-05-04'] # consumption errors
     ],
-    'hc-la-popa':[],
-    'hc-baq':[],
-    'hc-tintal':[],
+    'hc-la-popa':[
+        ['2022-01-01', '2022-05-20'] # consumption errors (from missing data?)
+    ],
+    'hc-baq':[
+        ['2022-02-17', '2022-05-20'] # consumption errors (from missing data?)
+    ],
+    'hc-tintal':[
+        ['2022-02-03', '2022-02-26']
+    ],
     'hc-bello':[
-        ['2022-05-11', '2022-05-22']
+        ['2022-01-01', '2022-01-29'], # huge consumption outlier
+        ['2022-05-11', '2022-05-22'] # missing data
     ],
-    'hc-san-juan':[]
+    'hc-san-juan':[
+        ['2022-01-01', '2022-02-01'], # power outliers
+    ]
+}
+
+BASELINE_DATE_INTERVAL = {
+    'start': "2022-01-01",
+    'end': "2022-08-31"
+}
+
+STUDY_DATE_INTERVAL = {
+    'start': "2022-09-01",
+    'end': "2022-09-30"
 }
