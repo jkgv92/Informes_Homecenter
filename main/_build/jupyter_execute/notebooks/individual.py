@@ -1511,13 +1511,7 @@ lighting_typical_day_week(df_office_pa, device_name, office_name, fix_negatives=
 # 
 # A continuación, te listamos las oportunidades de mejora que identificamos a través de la asesoría que hoy te estamos brindando:
 
-# ![Diagrama_proceso_ISO_50001.jpg](figures/medidas.png)
-
-# - (*Costo alto: Más de 500MM COP*)
-# - (*Costo medio Hasta Desde 80MM a 500MM COP*)
-# - (*Costo Bajo: Hasta 80MM*)
-# 
-# (*Nota: Estos Costos son aproximados y basados en experiencia de otras implementaciones, dichos valores deberán ajustarse con estudios específicos.*)
+# ![Diagrama_proceso_ISO_50001.jpg](figures/medidas_02.png)
 
 # ### Matriz de implementación
 
@@ -1528,5 +1522,3 @@ lighting_typical_day_week(df_office_pa, device_name, office_name, fix_negatives=
 # ¡En Celsia nos encanta acompañarte en la meta de ser más eficientes!
 
 # ![alt text](https://www.celsia.com/wp-content/uploads/2021/11/Celsia-Horizonal-Eslogan_Jpg.jpg)
-
-# 
